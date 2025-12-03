@@ -95,5 +95,26 @@ fun QuizScreen() {
                 style = MaterialTheme.typography.headlineSmall
             )
         }
+        if (isAnswered && !isQuizFinished) {
+            Button(
+                onClick = {
+                    if (currentIndex < questions.size - 1) {
+                        currentIndex++
+                        isAnswered = false
+                    } else {
+                        isQuizFinished = true
+                    }
+                },
+                modifier = Modifier.padding(16.dp)
+            ) { Text("Next") }
+        }
+
+        if (isQuizFinished) {
+            Text(
+                text = "Правильных ответов: $userScore из ${questions.size}",
+                style = MaterialTheme.typography.headlineSmall
+            )
+        }
+    }
     }
 }
